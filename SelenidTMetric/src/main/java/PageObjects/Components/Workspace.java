@@ -1,22 +1,23 @@
 package PageObjects.Components;
 
 import PageObjects.*;
+import PageObjects.WorkspaceSettings.GeneralWorkspaceSettingsPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
 public class Workspace {
-    private SelenideElement linkToProjectsPage = $x("//span[text()='Settings']");
+    private SelenideElement linkToSettingsPage = $x("//span[text()='Settings']");
     private SelenideElement linkToMembersPage = $x("//span[text()='Members']");
     private SelenideElement linkToTeamsPage = $x("//span[text()='Teams']");
     private SelenideElement linkToTagsPage = $x("//span[text()='Tags']");
     private SelenideElement linkToIntegrationsPage = $x("//span[text()='Integrations']");
     private SelenideElement linkToSubscriptionPage = $x("//span[text()='Subscription']");
 
-    public WorkspaceSettingsPage goToWorkspaceSettingsPage(){
-        linkToProjectsPage.shouldBe(Condition.visible).click();
-        return new WorkspaceSettingsPage();
+    public GeneralWorkspaceSettingsPage goToGeneralWorkspaceSettingsPage(){
+        linkToSettingsPage.shouldBe(Condition.visible).click();
+        return new GeneralWorkspaceSettingsPage();
     }
     public MembersPage goToMembersPagePage(){
         linkToMembersPage.shouldBe(Condition.visible).click();

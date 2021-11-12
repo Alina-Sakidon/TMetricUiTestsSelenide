@@ -2,7 +2,7 @@ package PageObjects.Components;
 
 import PageObjects.UserHotMenu.LogoutPage;
 import PageObjects.UserHotMenu.ManageWorkspacePage;
-import PageObjects.UserHotMenu.MyProfilePage;
+import PageObjects.UserHotMenu.MyProfilePages.MyProfilePage;
 import PageObjects.MyTimePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;

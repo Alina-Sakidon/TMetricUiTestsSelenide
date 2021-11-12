@@ -1,26 +1,31 @@
 package MyProfileTests;
 
+import API.ApiException;
+import API.RestoreBD;
 import PageObjects.MyTimePage;
-import PageObjects.RestoreDbPade;
-import PageObjects.UserHotMenu.MyProfilePage;
+import PageObjects.RestoreDbPage;
+import PageObjects.UserHotMenu.MyProfilePages.ChangePasswordPage;
+import PageObjects.UserHotMenu.MyProfilePages.MyProfilePage;
+import PageObjects.UserHotMenu.MyProfilePages.SuccessChangePasswordPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class MyProfile extends BaseTest {
-    @Test
+    @Test(priority = 1,alwaysRun = true)
     public void profileTest() throws InterruptedException {
-        RestoreDbPade restoreDbPade = restoreSqlBase("NewWorkweek");
-        MyTimePage myProfile = goToLoginPage()
+        RestoreDbPage restoreDbPage = restoreSqlBase("NewWorkweek");
+        Assert.assertTrue(restoreDbPage.successRestoreDB());
+        MyTimePage myTimePage = goToLoginPage()
                 .ownerAuthorization()
                 .skipBrowsExtension()
                 .goToWorkspace("Workweek with general and personal settings");
 
-         //(MyTimePage)myProfile.menu().open(MenuPageType.TIME);
-
     }
-    @Test
-    public void test470() throws InterruptedException {
-        RestoreDbPade restoreDbPade = restoreSqlBase("NewWorkweek");
+    @Test(priority = 2,alwaysRun = true)
+    public void test_470() throws InterruptedException, IOException, ApiException {
+        RestoreBD.restoreDB("NewWorkweek");
         MyProfilePage myProfile = goToLoginPage()
                 .ownerAuthorization()
                 .skipBrowsExtension()
@@ -28,12 +33,78 @@ public class MyProfile extends BaseTest {
                 .menu()
                 .openMyProfile();
         Assert.assertTrue(myProfile.isMyProfilePageVisible());
-        myProfile.clear().set("y");
-        //Assert.assertTrue(myProfile.isgBorderRed());
+        myProfile.setName("").saveChanges();
+        Assert.assertTrue(myProfile.isgBorderRed());
+        Assert.assertTrue(myProfile.isSavingMenuVisible());
+    }
+    @Test(priority = 3)
+    public void changeValidPassword_492() throws InterruptedException, IOException, ApiException {
+        RestoreBD.restoreDB("NewWorkweek");
+        SuccessChangePasswordPage successChangePasswordPage = goToLoginPage()
+                .ownerAuthorization()
+                .skipBrowsExtension()
+                .goToWorkspace("Workweek with general and personal settings")
+                .menu()
+                .openMyProfile()
+                .goToChangePasswordPage()
+                .setOldPassword("111111")
+                .setNewPassword("!Devart2019")
+                .confirmNewPassword("!Devart2019")
+                .savePasswordByEnter();
+        Assert.assertTrue(successChangePasswordPage.isSuccessMessageDisplayed());
+       MyProfilePage myProfilePage = new MyProfilePage();
+        Assert.assertTrue(myProfilePage.isMyProfilePageVisible());
+    }
+    @Test
+    public void cancelChangedPassword_493() throws IOException, ApiException {
+        RestoreBD.restoreDB("NewWorkweek");
+        ChangePasswordPage changePasswordPage = goToLoginPage()
+                .ownerAuthorization()
+                .skipBrowsExtension()
+                .goToWorkspace("Workweek with general and personal settings")
+                .menu()
+                .openMyProfile()
+                .goToChangePasswordPage()
+                .setOldPassword("111111")
+                .setNewPassword("!Devart2019")
+                .confirmNewPassword("!Devart2019")
+                .cancelChangedPassword();
+        MyProfilePage myProfilePage = new MyProfilePage();
+        Assert.assertTrue(myProfilePage.isMyProfilePageVisible());
+    }
+    @Test
+    public void cancelPasswordWithWrongOldPass_494() throws IOException, ApiException {
+        RestoreBD.restoreDB("NewWorkweek");
+        ChangePasswordPage changePasswordPage = goToLoginPage()
+                .ownerAuthorization()
+                .skipBrowsExtension()
+                .goToWorkspace("Workweek with general and personal settings")
+                .menu()
+                .openMyProfile()
+                .goToChangePasswordPage()
+                .setOldPassword("0000")
+                .setNewPassword("!Devart2019")
+                .confirmNewPassword("!Devart2019")
+                .savePassword();
+        Assert.assertTrue(changePasswordPage.isIncorrectPasswordMessageDisplayed());
+    }
+    @Test
+    public void inputInvalidPass_495() throws IOException, ApiException {
+        //RestoreDbPade restoreDbPade  = restoreSqlBase("NewWorkweek");
+       // Assert.assertTrue(restoreDbPade.successRestoreDB());
 
-        //MyTimePage myTimePage = myProfile
-       /* MyTimePage myTimePage1 = myTimePage.menu().openMyTime();
-        Assert.assertTrue(myTimePage.isMyTimePageVisible());*/
+        RestoreBD.restoreDB("NewWorkweek");
+        ChangePasswordPage changePasswordPage = goToLoginPage()
+                .ownerAuthorization()
+                .skipBrowsExtension()
+                .goToWorkspace("Workweek with general and personal settings")
+                .menu()
+                .openMyProfile()
+                .goToChangePasswordPage()
+                .setNewPassword("QWEas1!");
+        Assert.assertTrue(changePasswordPage.isSaveButtonDisabled());
+                changePasswordPage.confirmNewPassword("QWEas1!");
+        Assert.assertTrue(changePasswordPage.isTextOfRequiredSymbolsRed());
     }
 
 }

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
     @Test
     public void loginAdmin() throws InterruptedException {
-        RestoreDbPade restoreDbPade = restoreSqlBase("NewWorkweek");
+        RestoreDbPage restoreDbPage = restoreSqlBase("NewWorkweek");
         ChooseWorkspacePage chooseWorkspacePage = goToLoginPage()
                 .setEmailAndPassword("admin@tmetric.test", "111111")
                 .clickLoginButton()
@@ -24,11 +24,6 @@ public class LoginTests extends BaseTest {
         ProjectsPage projectsPage = (ProjectsPage) teamSummaryPage.menu().open(GroupedPageType.projects);
         Assert.assertTrue(projectsPage.isProjectsPageVisible());
 
-        /*LeftSideMenu menu = myTimePage.menu();
-
-        HelpPage page = (HelpPage) menu.open(MenuPageType.TIME);
-
-        Assert.assertTrue(myTimePage.isMyTimePageVisible());*/
     }
 
 }

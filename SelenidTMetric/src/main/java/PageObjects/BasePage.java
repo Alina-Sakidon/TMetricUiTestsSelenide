@@ -1,30 +1,24 @@
 package PageObjects;
 
-import PageObjects.Components.LeftSideMenu;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.support.Color;
 
 public class BasePage {
 
-    protected void setValue(SelenideElement element, String value) throws InterruptedException {
+    protected void setValue(SelenideElement element, String value) {
         element.clear();
         element.setValue(value);
-        //element.sendKeys(value);
     }
     protected boolean isElementVisible(SelenideElement element,String text){
         element.should(Condition.visible).should(Condition.matchText(text));
         return element.isDisplayed();
     }
+    protected boolean isBorderRed(SelenideElement element){
+        return Color.fromString(element.getCssValue("border-color")).asHex().equals("#ff4f42");
+    }
+    protected boolean isTextRed(SelenideElement element){
+        return Color.fromString(element.getCssValue("color")).asHex().equals("#ff4f42");
+    }
 
-
-    //protected abstract LeftSideMenu generateSideMenu();
-
-    /*public BasePage open(MenuPageType type)
-    {
-        var menu = getSideMenu();
-        if(menu != null) {
-         return menu.open(type);
-        }
-        return null;
-    }*/
 }

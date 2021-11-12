@@ -5,7 +5,9 @@ import PageObjects.Components.MenuPageTypes.MenuPageType;
 import PageObjects.Reports.*;
 import PageObjects.TimeOff.TimeOffPoliciesPage;
 import PageObjects.TimeOff.TimeOffRequestsPage;
-import PageObjects.UserHotMenu.MyProfilePage;
+import PageObjects.UserHotMenu.LogoutPage;
+import PageObjects.UserHotMenu.MyProfilePages.MyProfilePage;
+import PageObjects.WorkspaceSettings.GeneralWorkspaceSettingsPage;
 
 import java.util.HashMap;
 import java.util.function.Function;
@@ -54,7 +56,7 @@ public class LeftSideMenu {
         _activators.put(MenuPageType.TimeOffBalances, (p) -> manage.goToTimeOffBalancesPage());
         _activators.put(MenuPageType.TimeOffCalendar, (p) -> manage.goToTimeOffCalendarPage());
         //workspace
-        _activators.put(MenuPageType.Settings, (p) -> workspace.goToWorkspaceSettingsPage());
+        _activators.put(MenuPageType.Settings, (p) -> workspace.goToGeneralWorkspaceSettingsPage());
         _activators.put(MenuPageType.Members, (p) -> workspace.goToMembersPagePage());
         _activators.put(MenuPageType.Teams, (p) -> workspace.goToTeamsPage());
         _activators.put(MenuPageType.Tags, (p) -> workspace.goToTagsPage());
@@ -70,12 +72,6 @@ public class LeftSideMenu {
 
     }
 
-   /* public <T extends BasePage> T  openT()
-    {
-
-           return (T) time.goToMyTimePage();
-
-    }*/
 
     public BasePage open(MenuPageType page) {
         return open(page, null);
@@ -131,6 +127,14 @@ public class LeftSideMenu {
 
     public MyProfilePage openMyProfile(){
         return (MyProfilePage) open(MenuPageType.MyProfile);
+    }
+
+    public GeneralWorkspaceSettingsPage openGeneralWorkspaceSettingsPage(){
+        return (GeneralWorkspaceSettingsPage) open(MenuPageType.Settings);
+    }
+
+    public LogoutPage logout(){
+        return (LogoutPage) open(MenuPageType.Logout);
     }
 
     public BasePage open(MenuPageType page, String parameter) {
