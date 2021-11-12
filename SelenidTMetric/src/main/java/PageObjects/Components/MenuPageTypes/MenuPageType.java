@@ -3,6 +3,7 @@ package PageObjects.Components.MenuPageTypes;
 public enum MenuPageType
 {
     TIME,
+    TimeFromUserHotMenu,
     TASKS,
     TeamSummaryReport,
     ProjectsSummaryReport,

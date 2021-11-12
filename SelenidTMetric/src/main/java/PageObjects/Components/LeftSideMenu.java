@@ -66,7 +66,7 @@ public class LeftSideMenu {
         _activators.put(MenuPageType.Help, (p) -> help.goToHelpPage());
         //UserHotMenu
         _activators.put(MenuPageType.MyProfile, (p) -> userHotMenu.goToMyProfilePage());
-        _activators.put(MenuPageType.TIME, (workspace) -> userHotMenu.goToMyTimeFromUserHotMenu(workspace));
+        _activators.put(MenuPageType.TimeFromUserHotMenu, (workspace) -> userHotMenu.goToMyTimeFromUserHotMenu(workspace));
         _activators.put(MenuPageType.ManageWorkspaces, (p) -> userHotMenu.goToManageWorkspacePage());
         _activators.put(MenuPageType.Logout, (p) -> userHotMenu.goToLogoutPage());
 
