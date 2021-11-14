@@ -1,5 +1,6 @@
 package PageObjects;
 
+import PageObjects.Components.Header;
 import PageObjects.WorkspaceSettings.RegistrationPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -13,6 +14,11 @@ public class LoginPage extends BasePage{
     private SelenideElement inputPassword = $(By.id("Password"));
     private SelenideElement loginButton = $(By.id("login"));
     private SelenideElement signUpLink = $x("//a[contains(text(),'Sign Up')]");
+    public Header header;
+
+    public LoginPage(){
+        header = new Header("Log into TMetric");
+    }
 
 
     public LoginPage setEmailAndPassword(String email, String password) throws InterruptedException {

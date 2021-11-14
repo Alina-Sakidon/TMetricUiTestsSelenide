@@ -54,6 +54,8 @@ public class MyProfile extends BaseTest {
         Assert.assertTrue(successChangePasswordPage.isSuccessMessageDisplayed());
        MyProfilePage myProfilePage = new MyProfilePage();
         Assert.assertTrue(myProfilePage.isMyProfilePageVisible());
+        myProfilePage.menu()
+                .openTime().isMyTimePageVisible();
     }
     @Test
     public void cancelChangedPassword_493() throws IOException, ApiException {

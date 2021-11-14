@@ -21,7 +21,7 @@ public class UserHotMenu {
         actions().moveToElement(iconToScope).click().moveToElement(linkToMyProfilePage).click().build().perform();
         return new MyProfilePage();
     }
-    public MyTimePage goToMyTimeFromUserHotMenu(String workspaceName){
+    public MyTimePage chooseWorkspaceFromUserHotMenu(String workspaceName){
         actions().moveToElement(iconToScope.should(Condition.visible)).click().moveToElement(chooseWorkspacesList.find(Condition.text(workspaceName))).
                 click().build().perform();
         return new MyTimePage();
