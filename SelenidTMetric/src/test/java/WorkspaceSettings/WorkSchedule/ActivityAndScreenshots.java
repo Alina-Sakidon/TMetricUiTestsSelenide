@@ -3,6 +3,7 @@ package WorkspaceSettings.WorkSchedule;
 import API.ApiException;
 import API.RestoreBD;
 import MyProfileTests.BaseTest;
+import PageObjects.DeleteWorkspacePage;
 import PageObjects.MyTimePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -31,10 +32,10 @@ public class ActivityAndScreenshots extends BaseTest {
                 .skipBrowsExtensionByRegistration()
                 .skipDownloadDesktop();
         Assert.assertTrue(myTimePage.isMyTimePageVisible());
-
-               /* .skipBrowsExtension()
-                .goToWorkspace("Workweek with general and personal settings")
+        DeleteWorkspacePage deleteWorkspasepage = myTimePage
                 .menu()
-                .openGeneralWorkspaceSettingsPage().goToActivityAndScreenshotsPage();
-        Assert.assertTrue(activityAndScreenshotsPage.isTitleActivityAndScreenshotsCaptureDisplayed());*/
+                .openGeneralWorkspaceSettingsPage()
+                .deleteWorkspase();
+        Assert.assertTrue(deleteWorkspasepage.isPageTitleContainsWorkspaceName("qwerty"));
+
 }}
