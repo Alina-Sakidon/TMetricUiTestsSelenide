@@ -15,7 +15,7 @@ public class InstallDesktopPage extends BasePage{
     public InstallDesktopPage(){
         header = new Header("Use Tracking Reminders and Measure Your Activity");
     }
-    public MyTimePage skipDownloadDesktop(){
+    public MyTimePage skipDownloadDesktop()  {
         skipDownloadDesktop.shouldBe(Condition.visible).click();
         return new MyTimePage();
     }

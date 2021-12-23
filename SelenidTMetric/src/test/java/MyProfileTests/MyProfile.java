@@ -58,7 +58,7 @@ public class MyProfile extends BaseTest {
                 .openTime().isMyTimePageVisible();
     }
     @Test
-    public void cancelChangedPassword_493() throws IOException, ApiException {
+    public void cancelChangedPassword_493() throws IOException, ApiException, InterruptedException {
         RestoreBD.restoreDB("NewWorkweek");
         ChangePasswordPage changePasswordPage = goToLoginPage()
                 .ownerAuthorization()
@@ -75,7 +75,7 @@ public class MyProfile extends BaseTest {
         Assert.assertTrue(myProfilePage.isMyProfilePageVisible());
     }
     @Test
-    public void cancelPasswordWithWrongOldPass_494() throws IOException, ApiException {
+    public void cancelPasswordWithWrongOldPass_494() throws IOException, ApiException, InterruptedException {
         RestoreBD.restoreDB("NewWorkweek");
         ChangePasswordPage changePasswordPage = goToLoginPage()
                 .ownerAuthorization()
@@ -91,7 +91,7 @@ public class MyProfile extends BaseTest {
         Assert.assertTrue(changePasswordPage.isIncorrectPasswordMessageDisplayed());
     }
     @Test
-    public void inputInvalidPass_495() throws IOException, ApiException {
+    public void inputInvalidPass_495() throws IOException, ApiException, InterruptedException {
         //RestoreDbPade restoreDbPade  = restoreSqlBase("NewWorkweek");
        // Assert.assertTrue(restoreDbPade.successRestoreDB());
 

@@ -19,7 +19,7 @@ public class RestoreBD {
             throw new ApiException(codeStatus, "Status code not 200");
         }
     }
-    public  static void restoreDB (String nameWorkspace) throws IOException, ApiException {
+    public  static void restoreDB (String nameWorkspace) throws IOException, ApiException, InterruptedException {
         Gson gson = new Gson();
         request = new Request.Builder()
                 .header("Content-Type","Application/json")
@@ -29,7 +29,7 @@ public class RestoreBD {
 
         client = new OkHttpClient();
         call = client.newCall(request);
-        response = call.execute();
+       response = call.execute();
         checkStatusCode();
 
     }

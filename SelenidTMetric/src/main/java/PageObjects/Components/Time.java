@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class Time {
     private SelenideElement linkToMyTimePage = $x("//span[text()='Time']");
-    public MyTimePage goToMyTimePage(){
+    public MyTimePage goToMyTimePage() {
         linkToMyTimePage.click();
         return new MyTimePage();
     }

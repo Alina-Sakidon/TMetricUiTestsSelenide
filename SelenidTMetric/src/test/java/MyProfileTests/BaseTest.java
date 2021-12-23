@@ -14,7 +14,6 @@ public class BaseTest {
     @BeforeMethod
     public void beforeMethod(){
         Configuration.startMaximized = true;
-        //clearBrowserCookies();
         closeWebDriver();
     }
     public RestoreDbPage restoreSqlBase(String database){

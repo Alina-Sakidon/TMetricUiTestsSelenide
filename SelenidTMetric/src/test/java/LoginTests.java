@@ -1,6 +1,5 @@
 import MyProfileTests.BaseTest;
 import PageObjects.*;
-import PageObjects.Components.MenuPageTypes.GroupedPageType;
 import PageObjects.Components.MenuPageTypes.Reports;
 import PageObjects.Reports.TeamSummaryPage;
 import org.testng.Assert;
@@ -14,15 +13,9 @@ public class LoginTests extends BaseTest {
                 .setEmailAndPassword("admin@tmetric.test", "111111")
                 .clickLoginButton()
                 .skipBrowsExtension();
-        Assert.assertTrue(chooseWorkspacePage.isChooseWorkspacePageVisible());
+       // Assert.assertTrue(chooseWorkspacePage.isChooseWorkspacePageVisible());
 
-        MyTimePage myTimePage = chooseWorkspacePage.goToWorkspace("Workweek with general and personal settings");
-
-
-        TeamSummaryPage teamSummaryPage = (TeamSummaryPage) myTimePage.menu().open(Reports.teamSummary);
-        Assert.assertTrue(teamSummaryPage.isTeamSummaryPageVisible());
-        ProjectsPage projectsPage = (ProjectsPage) teamSummaryPage.menu().open(GroupedPageType.projects);
-        Assert.assertTrue(projectsPage.isProjectsPageVisible());
+        boolean myTimePage = chooseWorkspacePage.goToWorkspace("Workweek with general and personal settings").isMyTimePageVisible();
 
     }
 

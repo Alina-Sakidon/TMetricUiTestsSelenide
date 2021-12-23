@@ -21,7 +21,7 @@ public class LoginPage extends BasePage{
     }
 
 
-    public LoginPage setEmailAndPassword(String email, String password) throws InterruptedException {
+    public LoginPage setEmailAndPassword(String email, String password) {
         setValue(inputEmail,email);
         setValue(inputPassword,password);
         return this;
